@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
-
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the backend!' });
+  res.json({ message: 'Backend, meldet sich zum Dienst!' });
 });
+
 app.listen(port, () => {
   console.log(`Backend server läuft auf http://localhost:${port}`);
 });
