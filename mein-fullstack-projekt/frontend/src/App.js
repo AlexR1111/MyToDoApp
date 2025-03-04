@@ -12,7 +12,7 @@ useEffect(() => {
 return (
     <div className="App">
       <header className="App-header">
-        <p>{message}</p>
+        <p>ToDoList</p>
       </header>
     </div>
   );
