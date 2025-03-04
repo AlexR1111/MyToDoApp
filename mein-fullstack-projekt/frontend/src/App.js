@@ -13,9 +13,24 @@ function App() {
       .catch(error => console.error('Error:', error));
   }, []);
 
+  const saveTaskToDatabase = (task) => {
+    fetch('http://localhost:5000/api/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(task),
+    })
+      .then(response => response.json())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
+  };
+  
   const addTask = (task) => {
-    const newTasks = [... tasks, {text:task, completed: false}];
+    const newTask = { text: task, completed: false };
+    const newTasks = [...tasks, newTask];
     setTasks(newTasks);
+    saveTaskToDatabase(newTask);
   };
 
   const toggleTaskCompletion = (index) => {
@@ -38,7 +53,10 @@ function App() {
         <ul>
           {tasks.map((task,index) => (
             <li key={index}>
-              <input type="checkbox" checked={task.completed} onChange={() => toggleTaskCompletion(index)}/>
+              <input 
+                type="checkbox" 
+                checked={task.completed} 
+                onChange={() => toggleTaskCompletion(index)}/>
               <span style={{textDecoration: task.completed ? 'line-through' : 'none'}}>{task.text}</span>
               </li>
           ))}
