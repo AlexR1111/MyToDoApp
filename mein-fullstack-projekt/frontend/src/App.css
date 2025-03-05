@@ -1,10 +1,11 @@
 *{
-  font-family: garamond;
+  font-family: Monaco;
 }
 .App{
   margin-block: 25pm;
   margin-left: 25%;
   margin-right: 25%;
+  margin-top: 20%;
   text-shadow: #d3767679 2px 2px 2px;
 } 
 
@@ -15,9 +16,15 @@ body {
   background-attachment: fixed;
     color: #D37676 ;
 }
+h1{
+  color: #355F2E;
+}
 
 #list {
-border: 1px solid #b36565;
+border: 1px solid #C7DB9C;
+border-bottom-color:#FDAB9E ;
+border-left-color:#FFF0BD;
+border-right-color:#FFF0BD;
 border-radius:40px;
 border-width: 1rem;
 padding: 10px 10px 10px 10px;
@@ -36,6 +43,7 @@ padding: 10px 10px 10px 10px;
     padding-left: 20px;
     min-height: 50px;
     line-height: 50px;
+    color: #355F2E;
   }
 
   ul li ::before {
