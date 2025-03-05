@@ -48,12 +48,11 @@ function App() {
       <header className="App-header">
         <div id="list">
           <h1><span className="centralT">Meine To-Do-Liste</span></h1>
-        </div>
-        <AddTask onAdd={addTask}/>
-        <ul>
+                <AddTask onAdd={addTask}/>
+                 <ul>
           {tasks.map((task,index) => (
             <li key={index}>
-              <input 
+               <input 
                 type="checkbox" 
                 checked={task.completed} 
                 onChange={() => toggleTaskCompletion(index)}/>
@@ -61,6 +60,7 @@ function App() {
               </li>
           ))}
         </ul>
+        </div>
       </header>
     </div>
   );

@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const sqlite3 = require('sqlite3').verbose(); // verbose hilft beim fehler finden
+const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -11,6 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 const db = new sqlite3.Database('./tasks.db');
+db.run ('CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, completed BOOLEAN)');
+db.run('INSERT INTO tasks (text) VALUES (?)',"Zähne putzen");
 
 app.get('/api', (req, res) => {
   res.json({ message: 'Backend, meldet sich zum Dienst!' });

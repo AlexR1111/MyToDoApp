@@ -8,20 +8,7 @@ body {
 }
 
 #list {
-text-align: center;
-display: block;
-border-radius: 20px;
-border: #D37676 1px solid;
-background-color: #EBC49F;
-padding: 10px;
-margin: 10px 30em 0px 30em;
-}
-
-
-.list {
-  text-align: center;
-  margin-top: 3em;
-  display:blo  ;
-}
-
-
+ display:grid;
+ place-items: center;
+  
+  }
