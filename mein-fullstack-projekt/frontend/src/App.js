@@ -71,6 +71,9 @@ function App() {
           ))}
         </ul>
         </div>
+        <div>
+          <img id="gif" src ="/cat.gif" alt="cat"/>
+        </div>
       </header>
     </div>
   );

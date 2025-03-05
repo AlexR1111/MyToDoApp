@@ -20,6 +20,8 @@ h1{
   color: #355F2E;
 }
 
+
+
 #list {
 border: 1px solid #C7DB9C;
 border-bottom-color:#FDAB9E ;
@@ -57,3 +59,12 @@ padding: 10px 10px 10px 10px;
     background-image: url('IconWeb.png');
     background-size: cover;
   }
+
+#gif {
+  display: grid;
+  width: 30%;
+  height: auto;
+  place-items:center;
+  margin-left: -9em;
+  image-rendering:auto;
+}
