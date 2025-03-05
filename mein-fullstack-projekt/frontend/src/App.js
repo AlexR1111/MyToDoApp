@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import AddTask from './components/addTask';
 
+
 function App() {
-  const [message, setMessage] = useState('');
+  
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api')
+    fetch('http://localhost:5000/api/tasks')
       .then(response => response.json())
-      .then(data => setMessage(data.message))
+      .then(data => setTasks(data.tasks))
       .catch(error => console.error('Error:', error));
   }, []);
 
@@ -34,6 +35,7 @@ function App() {
   };
 
   const toggleTaskCompletion = (index) => {
+    const taskToToggle = tasks[index];
     const newTasks = tasks.map((task, i)=> {
       if (i === index) {
         return { ...task, completed: !task.completed};
@@ -41,7 +43,15 @@ function App() {
       return task;
     });
     setTasks(newTasks);
-  };
+  if (!taskToToggle.completed) {
+    fetch(`http://localhost:5000/api/tasks/${taskToToggle.id}`, {
+      method: 'DELETE',
+    })
+      .then(response => response.json())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
+  }
+};
 
   return (
     <div className="App">

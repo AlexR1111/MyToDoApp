@@ -12,7 +12,15 @@ app.use(express.json());
 
 const db = new sqlite3.Database('./tasks.db');
 db.run ('CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, completed BOOLEAN)');
-db.run('INSERT INTO tasks (text) VALUES (?)',"Zähne putzen");
+
+app.get('/api/tasks', (req, res) => {
+  db.all('SELECT * FROM tasks', [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({message: err.message});
+    }
+    res.json({tasks:rows});
+  });
+});
 
 app.get('/api', (req, res) => {
   res.json({ message: 'Backend, meldet sich zum Dienst!' });
@@ -29,6 +37,18 @@ app.post('/api/tasks', (req, res) => {
   });
 });
 
+app.delete('/api/tasks/:id', (req, res) => {
+  const {id} = req.params;
+  const query = 'DELETE FROM tasks WHERE id = ?';
+  db.run(query, id, function(err){
+    if(err) {
+      return res.status(500).json({message: err,nessage});
+    }
+    res.status(200).json({message: 'Task gelöscht', taskId: id});
+  });
+});
+
 app.listen(port, () => {
   console.log(`Backend server läuft auf http://localhost:${port}`);
 });
+
